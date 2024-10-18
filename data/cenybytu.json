@@ -1,0 +1,214 @@
+{
+  "2022": {
+    "Hlavní město Praha": {
+      "Rodinné domy (Kč za m2)": 104195,
+      "Byty (Kč za m2)": 112677
+    },
+    "Středočeský kraj": {
+      "Rodinné domy (Kč za m2)": 65912,
+      "Velikost obce": {
+        "do 1 999 obyv.": 59239,
+        "2 000 - 9 999 obyv.": 76601,
+        "10 000 - 49 999 obyv.": 63453,
+        "50 000 obyv. a více": 67234
+      },
+      "Byty (Kč za m2)": 55558,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 40761,
+        "2 000 - 9 999 obyv.": 50769,
+        "10 000 - 49 999 obyv.": 56350,
+        "50 000 obyv. a více": 70964
+      }
+    },
+    "Jihočeský kraj": {
+      "Rodinné domy (Kč za m2)": 46849,
+      "Velikost obce": {
+        "do 1 999 obyv.": 43191,
+        "2 000 - 9 999 obyv.": 43183,
+        "10 000 - 49 999 obyv.": 47339,
+        "50 000 obyv. a více": 91310
+      },
+      "Byty (Kč za m2)": 49746,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 32726,
+        "2 000 - 9 999 obyv.": 42804,
+        "10 000 - 49 999 obyv.": 49938,
+        "50 000 obyv. a více": 64554
+      }
+    },
+    "Plzeňský kraj": {
+      "Rodinné domy (Kč za m2)": 43695,
+      "Velikost obce": {
+        "do 1 999 obyv.": 37835,
+        "2 000 - 9 999 obyv.": 42530,
+        "10 000 - 49 999 obyv.": 46629,
+        "50 000 obyv. a více": 80616
+      },
+      "Byty (Kč za m2)": 51984,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 34436,
+        "2 000 - 9 999 obyv.": 43398,
+        "10 000 - 49 999 obyv.": 46897,
+        "50 000 obyv. a více": 63423
+      }
+    },
+    "Karlovarský kraj": {
+      "Rodinné domy (Kč za m2)": 38580,
+      "Velikost obce": {
+        "do 1 999 obyv.": 38661,
+        "2 000 - 9 999 obyv.": 35137,
+        "10 000 - 49 999 obyv.": 41978
+      },
+      "Byty (Kč za m2)": 36077,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 27079,
+        "2 000 - 9 999 obyv.": 28635,
+        "10 000 - 49 999 obyv.": 38064
+      }
+    },
+    "Ústecký kraj": {
+      "Rodinné domy (Kč za m2)": 38909,
+      "Velikost obce": {
+        "do 1 999 obyv.": 37915,
+        "2 000 - 9 999 obyv.": 37461,
+        "10 000 - 49 999 obyv.": 39382,
+        "50 000 obyv. a více": 56236
+      },
+      "Byty (Kč za m2)": 35952,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 30993,
+        "2 000 - 9 999 obyv.": 34711,
+        "10 000 - 49 999 obyv.": 34202,
+        "50 000 obyv. a více": 41897
+      }
+    },
+    "Liberecký kraj": {
+      "Rodinné domy (Kč za m2)": 47222,
+      "Velikost obce": {
+        "do 1 999 obyv.": 41176,
+        "2 000 - 9 999 obyv.": 41075,
+        "10 000 - 49 999 obyv.": 52289,
+        "50 000 obyv. a více": 72382
+      },
+      "Byty (Kč za m2)": 48694,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 30842,
+        "2 000 - 9 999 obyv.": 41320,
+        "10 000 - 49 999 obyv.": 45975,
+        "50 000 obyv. a více": 60900
+      }
+    },
+    "Královéhradecký kraj": {
+      "Rodinné domy (Kč za m2)": 45609,
+      "Velikost obce": {
+        "do 1 999 obyv.": 41512,
+        "2 000 - 9 999 obyv.": 42136,
+        "10 000 - 49 999 obyv.": 41541,
+        "50 000 obyv. a více": 69604
+      },
+      "Byty (Kč za m2)": 48007,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 34660,
+        "2 000 - 9 999 obyv.": 38700,
+        "10 000 - 49 999 obyv.": 45977,
+        "50 000 obyv. a více": 73560
+      }
+    },
+    "Pardubický kraj": {
+      "Rodinné domy (Kč za m2)": 41861,
+      "Velikost obce": {
+        "do 1 999 obyv.": 39006,
+        "2 000 - 9 999 obyv.": 42226,
+        "10 000 - 49 999 obyv.": 43008,
+        "50 000 obyv. a více": 65322
+      },
+      "Byty (Kč za m2)": 50596,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 34676,
+        "2 000 - 9 999 obyv.": 43126,
+        "10 000 - 49 999 obyv.": 43600,
+        "50 000 obyv. a více": 67375
+      }
+    },
+    "Kraj Vysočina": {
+      "Rodinné domy (Kč za m2)": 41510,
+      "Velikost obce": {
+        "do 1 999 obyv.": 39859,
+        "2 000 - 9 999 obyv.": 38275,
+        "10 000 - 49 999 obyv.": 42641,
+        "50 000 obyv. a více": 66597
+      },
+      "Byty (Kč za m2)": 48727,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 34299,
+        "2 000 - 9 999 obyv.": 42794,
+        "10 000 - 49 999 obyv.": 51230,
+        "50 000 obyv. a více": 57121
+      }
+    },
+    "Jihomoravský kraj": {
+      "Rodinné domy (Kč za m2)": 48001,
+      "Velikost obce": {
+        "do 1 999 obyv.": 40794,
+        "2 000 - 9 999 obyv.": 43523,
+        "10 000 - 49 999 obyv.": 41938,
+        "50 000 obyv. a více": 74382
+      },
+      "Byty (Kč za m2)": 67223,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 36617,
+        "2 000 - 9 999 obyv.": 50347,
+        "10 000 - 49 999 obyv.": 51897,
+        "50 000 obyv. a více": 83188
+      }
+    },
+    "Olomoucký kraj": {
+      "Rodinné domy (Kč za m2)": 38518,
+      "Velikost obce": {
+        "do 1 999 obyv.": 35961,
+        "2 000 - 9 999 obyv.": 39062,
+        "10 000 - 49 999 obyv.": 40919,
+        "50 000 obyv. a více": 70579
+      },
+      "Byty (Kč za m2)": 48451,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 31436,
+        "2 000 - 9 999 obyv.": 39939,
+        "10 000 - 49 999 obyv.": 44636,
+        "50 000 obyv. a více": 66213
+      }
+    },
+    "Zlínský kraj": {
+      "Rodinné domy (Kč za m2)": 38995,
+      "Velikost obce": {
+        "do 1 999 obyv.": 35170,
+        "2 000 - 9 999 obyv.": 36165,
+        "10 000 - 49 999 obyv.": 42713,
+        "50 000 obyv. a více": 66950
+      },
+      "Byty (Kč za m2)": 47441,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 37272,
+        "2 000 - 9 999 obyv.": 42667,
+        "10 000 - 49 999 obyv.": 48654,
+        "50 000 obyv. a více": 57564
+      }
+    },
+    "Moravskoslezský kraj": {
+      "Rodinné domy (Kč za m2)": 41301,
+      "Velikost obce": {
+        "do 1 999 obyv.": 36914,
+        "2 000 - 9 999 obyv.": 41242,
+        "10 000 - 49 999 obyv.": 38620,
+        "50 000 obyv. a více": 54162
+      },
+      "Byty (Kč za m2)": 41921,
+      "Velikost obce Byty": {
+        "do 1 999 obyv.": 32662,
+        "2 000 - 9 999 obyv.": 37755,
+        "10 000 - 49 999 obyv.": 35626,
+        "50 000 obyv. a více": 46866
+      }
+    }
+  }
+}
