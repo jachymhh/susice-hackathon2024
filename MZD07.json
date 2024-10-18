@@ -1,0 +1,137 @@
+[
+    {
+        "Region":"Česká republika",
+        "Průměrná_mzda_celkem":45927,
+        "Průměrná_mzda_muži":50010,
+        "Průměrná_mzda_ženy":41139,
+        "Medián_mzda_celkem":39518,
+        "Medián_mzda_muži":42231,
+        "Medián_mzda_ženy":36669
+    },
+    {
+        "Region":"Hlavní město Praha",
+        "Průměrná_mzda_celkem":57275,
+        "Průměrná_mzda_muži":63886,
+        "Průměrná_mzda_ženy":50011,
+        "Medián_mzda_celkem":46429,
+        "Medián_mzda_muži":50534,
+        "Medián_mzda_ženy":43194
+    },
+    {
+        "Region":"Středočeský kraj",
+        "Průměrná_mzda_celkem":46035,
+        "Průměrná_mzda_muži":50019,
+        "Průměrná_mzda_ženy":40959,
+        "Medián_mzda_celkem":40426,
+        "Medián_mzda_muži":43573,
+        "Medián_mzda_ženy":37118
+    },
+    {
+        "Region":"Jihočeský kraj",
+        "Průměrná_mzda_celkem":42028,
+        "Průměrná_mzda_muži":45919,
+        "Průměrná_mzda_ženy":37787,
+        "Medián_mzda_celkem":37542,
+        "Medián_mzda_muži":40777,
+        "Medián_mzda_ženy":34195
+    },
+    {
+        "Region":"Plzeňský kraj",
+        "Průměrná_mzda_celkem":44099,
+        "Průměrná_mzda_muži":47253,
+        "Průměrná_mzda_ženy":40304,
+        "Medián_mzda_celkem":40100,
+        "Medián_mzda_muži":42533,
+        "Medián_mzda_ženy":37241
+    },
+    {
+        "Region":"Karlovarský kraj",
+        "Průměrná_mzda_celkem":39746,
+        "Průměrná_mzda_muži":41800,
+        "Průměrná_mzda_ženy":37457,
+        "Medián_mzda_celkem":35622,
+        "Medián_mzda_muži":37524,
+        "Medián_mzda_ženy":33845
+    },
+    {
+        "Region":"Ústecký kraj",
+        "Průměrná_mzda_celkem":42013,
+        "Průměrná_mzda_muži":44982,
+        "Průměrná_mzda_ženy":38583,
+        "Medián_mzda_celkem":37801,
+        "Medián_mzda_muži":40266,
+        "Medián_mzda_ženy":35016
+    },
+    {
+        "Region":"Liberecký kraj",
+        "Průměrná_mzda_celkem":42029,
+        "Průměrná_mzda_muži":45680,
+        "Průměrná_mzda_ženy":37989,
+        "Medián_mzda_celkem":38096,
+        "Medián_mzda_muži":41087,
+        "Medián_mzda_ženy":35193
+    },
+    {
+        "Region":"Královéhradecký kraj",
+        "Průměrná_mzda_celkem":43417,
+        "Průměrná_mzda_muži":47747,
+        "Průměrná_mzda_ženy":38451,
+        "Medián_mzda_celkem":38584,
+        "Medián_mzda_muži":41986,
+        "Medián_mzda_ženy":35317
+    },
+    {
+        "Region":"Pardubický kraj",
+        "Průměrná_mzda_celkem":41036,
+        "Průměrná_mzda_muži":43610,
+        "Průměrná_mzda_ženy":37773,
+        "Medián_mzda_celkem":37328,
+        "Medián_mzda_muži":39650,
+        "Medián_mzda_ženy":34998
+    },
+    {
+        "Region":"Kraj Vysočina",
+        "Průměrná_mzda_celkem":41969,
+        "Průměrná_mzda_muži":45006,
+        "Průměrná_mzda_ženy":38150,
+        "Medián_mzda_celkem":37903,
+        "Medián_mzda_muži":40028,
+        "Medián_mzda_ženy":35146
+    },
+    {
+        "Region":"Jihomoravský kraj",
+        "Průměrná_mzda_celkem":45316,
+        "Průměrná_mzda_muži":49420,
+        "Průměrná_mzda_ženy":40314,
+        "Medián_mzda_celkem":39594,
+        "Medián_mzda_muži":42171,
+        "Medián_mzda_ženy":36823
+    },
+    {
+        "Region":"Olomoucký kraj",
+        "Průměrná_mzda_celkem":41084,
+        "Průměrná_mzda_muži":43923,
+        "Průměrná_mzda_ženy":37781,
+        "Medián_mzda_celkem":37143,
+        "Medián_mzda_muži":39268,
+        "Medián_mzda_ženy":34322
+    },
+    {
+        "Region":"Zlínský kraj",
+        "Průměrná_mzda_celkem":41328,
+        "Průměrná_mzda_muži":45348,
+        "Průměrná_mzda_ženy":36574,
+        "Medián_mzda_celkem":37265,
+        "Medián_mzda_muži":40652,
+        "Medián_mzda_ženy":33079
+    },
+    {
+        "Region":"Moravskoslezský kraj",
+        "Průměrná_mzda_celkem":41866,
+        "Průměrná_mzda_muži":45284,
+        "Průměrná_mzda_ženy":37925,
+        "Medián_mzda_celkem":38073,
+        "Medián_mzda_muži":40741,
+        "Medián_mzda_ženy":34690
+    }
+]
