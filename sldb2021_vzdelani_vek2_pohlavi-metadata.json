@@ -1,0 +1,142 @@
+﻿{
+  "@context": ["http://www.w3.org/ns/csvw",{"@language": "cs"}],
+  "url": "sldb2021_vzdelani_vek2_pohlavi.csv",
+  "tableSchema": {
+    "columns": [
+	{
+      "name": "idhod",
+      "titles": "idhod",
+      "dc:description":"unikátní identifikátor údaje Veřejné databáze ČSÚ",
+      "required": true,
+      "datatype": "string"
+    }, 
+	{
+      "name": "hodnota",
+      "titles": "hodnota",
+      "dc:description":"zjištěná hodnota v numerickém formátu",
+      "required": true,
+      "datatype": "number"
+    }, 
+	{
+      "name": "ukaz_kod",
+      "titles": "ukaz_kod",
+      "dc:description":"kód ukazatele (statistické proměnné)",
+      "required": true,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vzdelani_cis",
+      "titles": "vzdelani_cis",
+      "dc:description":"číselník pro vzdělání pokud není uveden, jedná se o celkový údaj bez rozlišení vzdělání",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vzdelani_kod",
+      "titles": "vzdelani_kod",
+      "dc:description":"kód položky z číselníku pro vzdělání; pokud není uveden, jedná se o celkový údaj bez rozlišení vzdělání",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vek_cis",
+      "titles": "vek_cis",
+      "dc:description":"číselník pro věkovou skupinu; pokud není uveden, jedná se o celkový údaj bez rozlišení věkové skupiny",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vek_kod",
+      "titles": "vek_kod",
+      "dc:description":"kód položky z číselníku pro věkovou skupinu; pokud není uveden, jedná se o celkový údaj bez rozlišení věkové skupiny",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "pohlavi_cis",
+      "titles": "pohlavi_cis",
+      "dc:description":"číselník pro pohlaví; pokud není uveden, jedná se o celkový údaj bez rozlišení pohlaví",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "pohlavi_kod",
+      "titles": "pohlavi_kod",
+      "dc:description":"kód položky z číselníku pro pohlaví; pokud není uveden, jedná se o celkový údaj bez rozlišení pohlaví",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "uzemi_cis",
+      "titles": "uzemi_cis",
+      "dc:description":"kód číselníku pro území",
+      "required": true,
+      "datatype": "string"
+    }, 
+	{
+      "name": "uzemi_kod",
+      "titles": "uzemi_kod",
+      "dc:description":"kód položky z číselníku pro území",
+      "required": true,
+      "datatype": "string"
+	}, 
+	{
+      "name": "sldb_rok",
+      "titles": "sldb_rok",
+      "dc:description":"rok sčítání ve formátu YYYY",
+      "required": true,
+      "datatype": "number"
+    }, 
+	{
+      "name": "sldb_datum",
+      "titles": "sldb_datum",
+      "dc:description":"rozhodné datum sčítání ve formátu YYYY-MM-DD",
+      "required": true,
+      "datatype": "date"
+    }, 
+	{
+      "name": "ukaz_txt",
+      "titles": "ukaz_txt",
+      "dc:description":"text ukazatele",
+      "required": true,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vzdelani_txt",
+      "titles": "vzdelani_txt",
+      "dc:description":"text položky z číselníku pro vzdělání",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "vek_txt",
+      "titles": "vek_txt",
+      "dc:description":"text položky z číselníku pro věkovou skupinu",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "pohlavi_txt",
+      "titles": "pohlavi_txt",
+      "dc:description":"text položky z číselníku pro pohlaví",
+      "required": false,
+      "datatype": "string"
+    }, 
+	{
+      "name": "uzemi_txt",
+      "titles": "uzemi_txt",
+      "dc:description":"text položky z číselníku pro území",
+      "required": true,
+      "datatype": "string"
+    }, 
+	{
+      "name": "uzemi_typ",
+      "titles": "uzemi_typ",
+      "dc:description":"typ území",
+      "required": true,
+      "datatype": "string"
+    }
+    ],
+    "primaryKey": "idhod"
+  }
+}
