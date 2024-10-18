@@ -1,0 +1,1 @@
+# susice-hackathon2024
