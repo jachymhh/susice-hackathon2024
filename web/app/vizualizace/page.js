@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div>
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-        <Link className="flex items-center" href="#">
+        <Link className="flex items-center" href="/">
           <TrendingUp className="h-6 w-6" />
           <span className="ml-2 text-lg font-bold">NEMO</span>
         </Link>

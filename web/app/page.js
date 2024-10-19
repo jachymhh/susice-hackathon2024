@@ -164,6 +164,16 @@ export default function Home() {
         <p className="text-xs text-gray-500 dark:text-gray-400">
           © 2024 Tomáš Opatrný, Antonín Marek, Jáchym Hašek - VOŠ a SPŠE Plzeň
         </p>
+        <div className="flex items-center gap-2">
+          <Link
+            className="text-xs text-blue-500 hover:underline"
+            href="https://github.com/jachymhh/susice-hackathon2024/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub Repo
+          </Link>
+        </div>
       </footer>
     </div>
   );
