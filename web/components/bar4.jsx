@@ -146,7 +146,7 @@ export function BarPrumernaCena() {
                 offset={12}
                 className="fill-foreground"
                 fontSize={12}
-                formatter={(value) => `${value.toLocaleString()} Kč`} // Zobrazení hodnot s čárkou
+                //formatter={(value) => `${value.toLocaleString()} Kč`} // Zobrazení hodnot s čárkou
               />
             </Bar>
           </BarChart>

@@ -2,28 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  XAxis,
+  Tooltip,
+} from "recharts";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import {
   Select,
   SelectTrigger,
   SelectContent,
   SelectItem,
   SelectValue,
-} from "@/components/ui/select"; // Updated imports
+} from "@/components/ui/select";
 
 export const description = "A bar chart with a label";
 
@@ -38,6 +39,7 @@ export function BarMzdaKraje() {
   const [chartData, setChartData] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("Česká republika"); // Default to whole Czech Republic
   const [regions, setRegions] = useState([]);
+  const [growthPercentage, setGrowthPercentage] = useState(null); // New state for growth percentage
 
   // Fetch data for each year
   useEffect(() => {
@@ -58,8 +60,18 @@ export function BarMzdaKraje() {
         });
       }
       setChartData(data);
-      // Set unique regions excluding the first entry
       setRegions([...new Set(data.map((item) => item.kraj))]); // Unique regions
+
+      // Calculate growth percentage for the default region (whole CR)
+      const defaultRegionData = data.filter(
+        (item) => item.kraj === "Česká republika"
+      );
+      if (defaultRegionData.length > 0) {
+        const firstMzda = defaultRegionData[0].mzda; // Mzda for the first year
+        const lastMzda = defaultRegionData[defaultRegionData.length - 1].mzda; // Mzda for the last year
+        const growth = ((lastMzda - firstMzda) / firstMzda) * 100;
+        setGrowthPercentage(growth);
+      }
     };
 
     fetchData();
@@ -70,19 +82,46 @@ export function BarMzdaKraje() {
     ? chartData.filter((item) => item.kraj === selectedRegion)
     : chartData;
 
+  // Custom Tooltip for displaying region name and wage
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white border rounded shadow-lg p-2">
+          <p className="font-semibold">{payload[0].payload.rok}</p>
+          <p className="text-muted-foreground">{`Mzda: ${payload[0].value.toLocaleString()} Kč`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Label</CardTitle>
-        <CardDescription>Data from 2015 to 2023</CardDescription>
+        <CardTitle>Vývoj mzdy od roku 2015 do 2023</CardTitle>
       </CardHeader>
       <CardContent>
-        <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-          <SelectTrigger>
+        <Select
+          value={selectedRegion}
+          onValueChange={(region) => {
+            setSelectedRegion(region);
+
+            // Calculate growth percentage for selected region
+            const regionData = chartData.filter((item) => item.kraj === region);
+            if (regionData.length > 0) {
+              const firstMzda = regionData[0].mzda;
+              const lastMzda = regionData[regionData.length - 1].mzda;
+              const growth = ((lastMzda - firstMzda) / firstMzda) * 100;
+              setGrowthPercentage(growth);
+            }
+          }}
+        >
+          <SelectTrigger className="w-40">
+            {" "}
+            {/* Narrower width */}
             <SelectValue placeholder="Select a region" />
           </SelectTrigger>
           <SelectContent>
-            {/* Create SelectItem for each region */}
             {regions.map((region, index) => (
               <SelectItem key={index} value={region}>
                 {region}
@@ -110,10 +149,7 @@ export function BarMzdaKraje() {
               axisLine={false}
               tickFormatter={(value) => String(value).slice(0, 4)} // Convert value to string
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <Tooltip content={<CustomTooltip />} /> {/* Use CustomTooltip */}
             <Bar dataKey="mzda" fill="var(--color-desktop)" radius={8}>
               <LabelList
                 position="top"
@@ -127,10 +163,13 @@ export function BarMzdaKraje() {
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Procentuální nárůst od roku 2015:
+          {growthPercentage !== null && (
+            <span className="font-bold">{growthPercentage.toFixed(2)}%</span>
+          )}
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Zobrazuje vývoj mzdy v jednotlivých krajích.
         </div>
       </CardFooter>
     </Card>
