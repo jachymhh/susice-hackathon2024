@@ -38,8 +38,8 @@ export default function Home() {
       </header>
       {/*srovnani mzda, cena a dohromady */}
       <BarMzdaRoky></BarMzdaRoky>
-      <BarPotrebaHypo></BarPotrebaHypo>
       <BarMzdaKraje></BarMzdaKraje>
+      <BarPotrebaHypo></BarPotrebaHypo>
       <BarPrumernaCena></BarPrumernaCena>
     </div>
   );
