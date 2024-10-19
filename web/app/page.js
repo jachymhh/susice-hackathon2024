@@ -18,12 +18,13 @@ export default function Home() {
           <TrendingUp className="h-6 w-6" />
           <span className="ml-2 text-lg font-bold">NEMO</span>
         </Link>
-        <nav className="flex gap-4 sm:gap-6">
+        <nav className="flex gap-4 sm:gap-6 flex-1 justify-end items-center">
+          {/* Odkaz na vizualizace zůstává vpravo */}
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
             href="/vizualizace"
           >
-            Vizualiazce
+            Vizualizace
           </Link>
           <ModeToggle />
         </nav>

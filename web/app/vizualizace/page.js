@@ -14,16 +14,17 @@ export default function Home() {
   return (
     <div>
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-        <Link className="flex items-center" href="/">
+        <Link className="flex items-center" href="#">
           <TrendingUp className="h-6 w-6" />
           <span className="ml-2 text-lg font-bold">NEMO</span>
         </Link>
-        <nav className="flex gap-4 sm:gap-6">
+        <nav className="flex gap-4 sm:gap-6 flex-1 justify-end items-center">
+          {/* Odkaz na vizualizace zůstává vpravo */}
           <Link
             className="text-sm font-medium hover:underline underline-offset-4"
             href="/vizualizace"
           >
-            Vizualiazce
+            Vizualizace
           </Link>
           <ModeToggle />
         </nav>
