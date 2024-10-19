@@ -9,6 +9,7 @@ import { BarPotrebnaCastka } from "@/components/bar5";
 import Link from "next/link";
 import { ModeToggle } from "@/components/themebtn";
 import { TrendingUp } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   return (
