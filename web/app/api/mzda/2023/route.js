@@ -46,7 +46,7 @@ export async function GET() {
       med: 38096,
     },
     {
-      kraj: "Kr\u00e1lov\u00e9hradeck\u00fd kraj",
+      kraj: "Královehradecký kraj",
       prum: 43417,
       med: 38584,
     },
@@ -56,7 +56,7 @@ export async function GET() {
       med: 37328,
     },
     {
-      kraj: "Kraj Vyso\u010dina",
+      kraj: "Vyso\u010dina",
       prum: 41969,
       med: 37903,
     },

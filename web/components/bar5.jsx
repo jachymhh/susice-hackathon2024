@@ -29,25 +29,45 @@ const chartConfig = {
   },
 };
 
-export function BarPrumernaCena() {
+export function BarPotrebnaCastka() {
   const [customSize, setCustomSize] = useState(65.3); // Default size in m²
   const [adjustedData, setAdjustedData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/byt/2023`); // Adjust the year as needed
-        const result = await response.json();
-        const basePrices = result.data.map((item) => ({
-          kraj: item.Kraj,
-          avgPrice: item.AVG, // Average price per m²
+        // Fetch property price data
+        const priceResponse = await fetch(`http://localhost:3001/api/byt/2023`);
+        const priceResult = await priceResponse.json();
+
+        // Fetch median salary data
+        const salaryResponse = await fetch(
+          `http://localhost:3001/api/mzda/2023`
+        );
+        const salaryResult = await salaryResponse.json();
+
+        const basePrices = priceResult.data.map((item) => ({
+          kraj: item.kraj,
+          avgPricePerM2: item.AVG, // Average price per m²
         }));
 
-        // Adjust prices based on the apartment size
-        const updatedData = basePrices.map((data) => ({
-          ...data,
-          avgPrice: Math.round(data.avgPrice * 65.3), // Price for a 65.3 m² apartment
-        }));
+        // Create a map for median salaries
+        const medianSalaries = {};
+        salaryResult.data.forEach((item) => {
+          medianSalaries[item.kraj] = item.med; // Map kraje to median salaries
+        });
+
+        // Adjust prices and calculate months needed based on the apartment size and median salary
+        const updatedData = basePrices.map((data) => {
+          const medianSalary = medianSalaries[data.kraj] || 1; // Use 1 to avoid division by 0
+          const totalPrice = Math.round(data.avgPricePerM2 * customSize); // Total price for the apartment
+          const monthsToSave = Math.round(totalPrice / medianSalary); // Calculate months needed to save
+
+          return {
+            kraj: data.kraj,
+            monthsToSave, // Number of months needed to save
+          };
+        });
 
         setAdjustedData(updatedData);
       } catch (error) {
@@ -56,13 +76,13 @@ export function BarPrumernaCena() {
     };
 
     fetchData();
-  }, []);
+  }, [customSize]); // Add customSize to dependencies
 
-  // Funkce pro nastavení vlastní velikosti bytu
+  // Function to set custom apartment size
   const handleSizeChange = (event) => {
-    const newSize = event.target.value; // Získání nové hodnoty jako string
+    const newSize = event.target.value; // Get new value as string
     if (newSize === "") {
-      setCustomSize(""); // Umožňuje vymazání na prázdný string
+      setCustomSize(""); // Allows clearing to empty string
     } else {
       const parsedSize = parseFloat(newSize);
       if (!isNaN(parsedSize)) {
@@ -71,38 +91,38 @@ export function BarPrumernaCena() {
     }
   };
 
-  // Vlastní tooltip pro zobrazení názvu kraje a průměrné ceny
+  // Custom tooltip to display the region name and months needed
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white border rounded shadow-lg p-2">
           <p className="font-semibold">{payload[0].payload.kraj}</p>
-          <p className="text-muted-foreground">{`${payload[0].value.toLocaleString()} Kč`}</p>
+          <p className="text-muted-foreground">{`Měsíce potřebné: ${payload[0].value}`}</p>
         </div>
       );
     }
     return null;
   };
 
-  // Výpočet nejnižší a nejvyšší ceny
-  const prices = adjustedData.map((data) => data.avgPrice);
-  const maxPrice = Math.max(...prices);
-  const minPrice = Math.min(...prices);
-  const percentDifference = ((maxPrice - minPrice) / minPrice) * 100;
+  // Calculate max and min months
+  const monthsNeeded = adjustedData.map((data) => data.monthsToSave);
+  const maxMonths = Math.max(...monthsNeeded);
+  const minMonths = Math.min(...monthsNeeded);
+  const percentDifference = ((maxMonths - minMonths) / minMonths) * 100;
 
   return (
     <Card className="mx-auto w-3/4 my-8">
       <CardHeader>
         <CardTitle>
-          Průměrná cena za byt v jednotlivých krajích (2023)
+          Počet měsíců potřebných k úspoře na byt v jednotlivých krajích (2023)
         </CardTitle>
         <CardDescription>
-          Zobrazené hodnoty představují průměrnou cenu za byt podle zadané
-          velikosti.
+          Zobrazené hodnoty představují počet měsíců potřebných k úspoře na byt
+          podle zadané velikosti.
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {/* Input pro zadání vlastní velikosti bytu */}
+        {/* Input for custom apartment size */}
         <div className="mb-4">
           <label className="block text-sm mb-1">
             Zadejte velikost bytu (m²):
@@ -118,16 +138,13 @@ export function BarPrumernaCena() {
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer
-            data={adjustedData.map((data) => ({
-              ...data,
-              avgPrice: Math.round((data.avgPrice / 65.3) * customSize), // Adjust price based on input size
-            }))}
+            data={adjustedData}
             margin={{
               top: 20,
             }}
           >
             <CartesianGrid vertical={false} />
-            {/* Osa X zobrazující názvy krajů */}
+            {/* X Axis displaying region names */}
             <XAxis
               dataKey="kraj"
               tickLine={false}
@@ -135,16 +152,16 @@ export function BarPrumernaCena() {
               axisLine={false}
               tickFormatter={(value) => value.slice(0, 5)}
             />
-            {/* Osa Y zobrazující ceny */}
+            {/* Y Axis displaying months needed */}
+            <YAxis />
             <Tooltip content={<CustomTooltip />} />
-            {/* Bar graph zobrazující průměrnou cenu */}
-            <Bar dataKey="avgPrice" fill="var(--color-desktop)" radius={8}>
+            {/* Bar graph showing the number of months needed to save */}
+            <Bar dataKey="monthsToSave" fill="var(--color-desktop)" radius={8}>
               <LabelList
                 position="top"
                 offset={12}
                 className="fill-foreground"
                 fontSize={12}
-                //formatter={(value) => `${value.toLocaleString()} Kč`} // Zobrazení hodnot s čárkou
               />
             </Bar>
           </BarChart>

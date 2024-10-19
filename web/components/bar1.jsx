@@ -82,7 +82,9 @@ export function BarMzdaRoky() {
   };
 
   return (
-    <Card>
+    <Card className="mx-auto w-3/4 my-8">
+      {" "}
+      {/* Center the card and add vertical margin */}
       <CardHeader>
         <CardTitle>Mzdy podle krajů ({selectedYear})</CardTitle>
         <CardDescription>
@@ -100,7 +102,9 @@ export function BarMzdaRoky() {
           </Select>
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-8">
+        {" "}
+        {/* Increased padding-top for more space above the chart */}
         <ChartContainer config={chartConfig}>
           <BarChart
             accessibilityLayer

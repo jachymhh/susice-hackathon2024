@@ -1,7 +1,14 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
+import { useEffect, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  XAxis,
+  Tooltip,
+} from "recharts";
 import {
   Card,
   CardContent,
@@ -10,14 +17,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ChartContainer } from "@/components/ui/chart";
 import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { useEffect, useState } from "react";
-
-export const description = "Bar Chart - Saving Amount for an Average Apartment";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { TrendingUp } from "lucide-react";
 
 const chartConfig = {
   saving: {
@@ -28,6 +36,10 @@ const chartConfig = {
 
 export function BarPotrebaHypo() {
   const [chartData, setChartData] = useState([]);
+  const [percentage, setPercentage] = useState(10); // Default percentage is 10%
+  const [priceDifference, setPriceDifference] = useState(0); // For % difference between highest and lowest
+  const [maxPrice, setMaxPrice] = useState(0); // Store the max price
+  const [minPrice, setMinPrice] = useState(0); // Store the min price
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,9 +56,6 @@ export function BarPotrebaHypo() {
         );
         const propertyData = await propertyResponse.json();
 
-        console.log("Salary Data:", salaryData);
-        console.log("Property Data:", propertyData);
-
         const avgApartmentSize = 65.3; // Average apartment size in m²
 
         // Combine data
@@ -56,28 +65,31 @@ export function BarPotrebaHypo() {
             (item) => item.Kraj === salaryItem.kraj // Ensure this matches your salary data structure
           );
 
-          // Check the property item
-          console.log("Property Item:", propertyItem);
-
           const medPricePerM2 = propertyItem ? propertyItem.AVG : 0; // Use AVG for average price
           const totalPrice = medPricePerM2 * avgApartmentSize; // Total price for the apartment
 
-          // Debugging output
-          console.log(
-            `Kraj: ${salaryItem.kraj}, Median Price Per m²: ${medPricePerM2}, Total Price: ${totalPrice}`
-          );
-
-          const amountToSave = totalPrice * 0.1; // Calculate 10% of the total price
+          // Calculate amount to save based on percentage
+          const amountToSave = totalPrice * (percentage / 100);
+          const medianSalary = salaryItem.medianMzdovaMzda || 1; // Avoid division by 0
 
           return {
             kraj: salaryItem.kraj,
-            amountToSave,
+            amountToSaveKc: Math.round(amountToSave), // Save amount in Kč, rounded
+            amountToSaveMonths: Math.round(amountToSave / medianSalary), // Save amount in months, rounded
+            totalPrice, // Store total price for calculations
           };
         });
 
-        console.log("Combined Data:", combinedData); // Log combined data for debugging
+        // Calculate max and min price
+        const prices = combinedData.map((item) => item.totalPrice);
+        const max = Math.max(...prices);
+        const min = Math.min(...prices);
+        const diffPercentage = ((max - min) / min) * 100;
 
-        // Filter out unwanted entries
+        // Set the data to state
+        setMaxPrice(Math.round(max)); // Round max price
+        setMinPrice(Math.round(min)); // Round min price
+        setPriceDifference(Math.round(diffPercentage)); // Round percentage difference
         setChartData(
           combinedData.filter(
             (item) => item.kraj !== "kraj" && item.kraj !== "Česká republika"
@@ -89,13 +101,40 @@ export function BarPotrebaHypo() {
     };
 
     fetchData();
-  }, []);
+  }, [percentage]);
+
+  // Custom Tooltip for displaying savings in Kč with space between thousands
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white border rounded shadow-lg p-2">
+          <p className="font-semibold">{payload[0].payload.kraj}</p>
+          <p className="text-muted-foreground">{`Úspory: ${payload[0].value.toLocaleString(
+            "cs-CZ"
+          )} Kč`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <Card>
+    <Card className="mx-auto w-3/4 my-8">
       <CardHeader>
-        <CardTitle>Bar Chart - Saving Amount for Average Apartment</CardTitle>
-        <CardDescription>Data for the year 2023</CardDescription>
+        <CardTitle>Potřebná částka pro získání hypotéky</CardTitle>
+        <CardDescription>Přepněte mezi 10 % a 20 % úspor</CardDescription>
+        <Select
+          onValueChange={(value) => setPercentage(Number(value))}
+          defaultValue="10"
+        >
+          <SelectTrigger className="w-32">
+            <SelectValue placeholder="Vyberte procento" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={10}>10%</SelectItem>
+            <SelectItem value={20}>20%</SelectItem>
+          </SelectContent>
+        </Select>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -104,6 +143,9 @@ export function BarPotrebaHypo() {
             data={chartData}
             margin={{
               top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -114,12 +156,9 @@ export function BarPotrebaHypo() {
               axisLine={false}
               tickFormatter={(value) => String(value).slice(0, 4)} // Convert value to string
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <Tooltip content={<CustomTooltip />} />
             <Bar
-              dataKey="amountToSave"
+              dataKey="amountToSaveKc"
               fill={chartConfig.saving.color}
               radius={8}
             >
@@ -133,14 +172,7 @@ export function BarPotrebaHypo() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing the amount needed to save for an average apartment in 2023
-        </div>
-      </CardFooter>
+      <CardFooter className="flex-col items-start gap-2 text-sm"></CardFooter>
     </Card>
   );
 }
