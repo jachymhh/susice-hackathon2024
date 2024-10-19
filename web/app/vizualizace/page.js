@@ -15,7 +15,13 @@ export default function Home() {
     <div>
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
         <Link className="flex items-center" href="/">
-          <TrendingUp className="h-6 w-6" />
+          <Image
+            src="/nemo.png" // Změňte cestu k obrázku podle potřeby
+            alt="Logo NEMO"
+            width={24} // Nastavte šířku na 24px
+            height={24} // Nastavte výšku na 24px
+            className="h-6 w-6" // Třída pro kontrolu velikosti
+          />
           <span className="ml-2 text-lg font-bold">NEMO</span>
         </Link>
         <nav className="flex gap-4 sm:gap-6 flex-1 justify-end items-center">
