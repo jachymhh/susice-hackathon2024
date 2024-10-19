@@ -1,7 +1,7 @@
 export async function GET() {
   const data = [
     {
-      Kraj: "Hlavní město Praha",
+      Kraj: "Praha",
       Q1: 116800,
       Q2: 114500,
       Q3: 114300,
