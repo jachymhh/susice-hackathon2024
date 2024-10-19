@@ -34,13 +34,13 @@ export function BarPotrebaHypo() {
       try {
         // Fetch median salary data
         const salaryResponse = await fetch(
-          "http://localhost:3001/api/mzda/2023"
+          "https://susice-hackathon2024.vercel.app//api/mzda/2023"
         );
         const salaryData = await salaryResponse.json();
 
         // Fetch median property price data
         const propertyResponse = await fetch(
-          "http://localhost:3001/api/byt/2023"
+          "https://susice-hackathon2024.vercel.app//api/byt/2023"
         );
         const propertyData = await propertyResponse.json();
 

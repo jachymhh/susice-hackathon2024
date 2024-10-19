@@ -36,7 +36,9 @@ export function BarPrumernaCena() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/byt/2023`); // Adjust the year as needed
+        const response = await fetch(
+          `https://susice-hackathon2024.vercel.app//api/byt/2023`
+        ); // Adjust the year as needed
         const result = await response.json();
         const basePrices = result.data.map((item) => ({
           kraj: item.Kraj,

@@ -30,7 +30,9 @@ const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
 
 // Funkce pro načtení dat z API
 const fetchDataFromApi = async (year) => {
-  const response = await fetch(`http://localhost:3001/api/mzda/${year}`);
+  const response = await fetch(
+    `https://susice-hackathon2024.vercel.app//api/mzda/${year}`
+  );
   const data = await response.json();
 
   // Odstranění prvního výsledku ("kraj: 'kraj'")

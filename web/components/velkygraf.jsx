@@ -36,7 +36,7 @@ export function Velkygraf() {
         const averagePrices = await Promise.all(
           years.map(async (year) => {
             const bytyResponse = await fetch(
-              `http://localhost:3001/api/byt/${year}`
+              `https://susice-hackathon2024.vercel.app//api/byt/${year}`
             );
             const bytyData = await bytyResponse.json();
             // Assuming each response has an AVG field for the average price
@@ -56,7 +56,7 @@ export function Velkygraf() {
         const medianSalaries = await Promise.all(
           years.map(async (year) => {
             const mzdaResponse = await fetch(
-              `http://localhost:3001/api/mzda/${year}`
+              `https://susice-hackathon2024.vercel.app//api/mzda/${year}`
             );
             const mzdaData = await mzdaResponse.json();
             // Assuming each response has a med field for the median salary

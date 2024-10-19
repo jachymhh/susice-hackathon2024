@@ -46,7 +46,9 @@ export function BarMzdaKraje() {
       const data = [];
 
       for (const year of years) {
-        const response = await fetch(`http://localhost:3001/api/mzda/${year}`);
+        const response = await fetch(
+          `https://susice-hackathon2024.vercel.app//api/mzda/${year}`
+        );
         const json = await response.json();
         // Exclude the first result (which is the "kraj" placeholder)
         const filteredData = json.data.slice(1);
