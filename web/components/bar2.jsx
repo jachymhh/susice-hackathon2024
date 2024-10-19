@@ -96,11 +96,15 @@ export function BarMzdaKraje() {
   };
 
   return (
-    <Card>
+    <Card className="mx-auto w-3/4 my-8">
+      {" "}
+      {/* Center the card and add vertical margin */}
       <CardHeader>
         <CardTitle>Vývoj mzdy od roku 2015 do 2023</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-8">
+        {" "}
+        {/* Increased padding-top for more space above the chart */}
         <Select
           value={selectedRegion}
           onValueChange={(region) => {
