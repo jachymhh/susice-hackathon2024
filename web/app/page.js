@@ -42,7 +42,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button>Objevte Data</Button>
+                <Button href="/vizualizace">Objevte Data</Button>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function Home() {
         >
           <div className="container mx-auto px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
-              Key Features
+              Klíčové Funkce
             </h2>
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
               <Card className="text-center">
@@ -147,7 +147,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button size="lg">Pojďme na to!</Button>
+                <Button href="/vizualizace" size="lg">Pojďme na to!</Button>
               </div>
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function Home() {
 
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t justify-between">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2024 
+          © 2024 Tomáš Opatrný, Antonín Marek, Jáchym Hašek - VOŠ a SPŠE Plzeň 
         </p>
       </footer>
     </div>
