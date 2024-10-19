@@ -38,11 +38,14 @@ export default function Home() {
                   Průzkumník Českých Ekonomických Trendů
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Vizualizujte a analyzujte vývoj mezd a cen nemovitostí v jednotlivých českých regionech v průběhu času.
+                  Vizualizujte a analyzujte vývoj mezd a cen nemovitostí v
+                  jednotlivých českých regionech v průběhu času.
                 </p>
               </div>
               <div className="space-x-4">
-                <Button onClick="location.href='/vizualizace';">Objevte Data</Button>
+                <Link href="/vizualizace">
+                  <Button>Objevte Data</Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -72,7 +75,8 @@ export default function Home() {
                   <CardTitle>Analýza Časových Řad</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  Analyzujte trendy ve vývoji mezd a nemovitostí v rozmezí několika let.
+                  Analyzujte trendy ve vývoji mezd a nemovitostí v rozmezí
+                  několika let.
                 </CardContent>
               </Card>
               <Card className="text-center">
@@ -111,7 +115,7 @@ export default function Home() {
                   <CardDescription>Full-stack Vývojář</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  Zkušený ve vytváření responzivních webových aplikací a práci s daty.
+                  Zkušený ve vytváření webových aplikací a práci s daty.
                 </CardContent>
               </Card>
               <Card className="text-center">
@@ -131,9 +135,7 @@ export default function Home() {
         <section
           id="data"
           className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
-        >
-
-        </section>
+        ></section>
 
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto px-4 md:px-6 text-center">
@@ -143,11 +145,14 @@ export default function Home() {
                   Jste připraveni poznat statistiky o Českém nemovitostním trhu?
                 </h2>
                 <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Vnořte se do naší interaktivní platformy, a objevte informace o mzdách a cenách nemovitostí napříč Českými regiony.
+                  Vnořte se do naší interaktivní platformy, a objevte informace
+                  o mzdách a cenách nemovitostí napříč Českými regiony.
                 </p>
               </div>
               <div className="space-x-4">
-                <Button onClick="location.href='/vizualizace';" size="lg">Pojďme na to!</Button>
+                <Link href="/vizualizace">
+                  <Button size="lg">Pojďme na to!</Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -156,7 +161,7 @@ export default function Home() {
 
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t justify-between">
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          © 2024 Tomáš Opatrný, Antonín Marek, Jáchym Hašek - VOŠ a SPŠE Plzeň 
+          © 2024 Tomáš Opatrný, Antonín Marek, Jáchym Hašek - VOŠ a SPŠE Plzeň
         </p>
       </footer>
     </div>

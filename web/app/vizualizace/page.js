@@ -33,7 +33,6 @@ export default function Home() {
       <BarPotrebaHypo></BarPotrebaHypo>
       <BarMzdaKraje></BarMzdaKraje>
       <BarPrumernaCena></BarPrumernaCena>
-      <BarPotrebnaCastka></BarPotrebnaCastka>
     </div>
   );
 }
