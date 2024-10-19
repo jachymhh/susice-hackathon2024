@@ -42,7 +42,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button href="/vizualizace">Objevte Data</Button>
+                <Button onClick="location.href='/vizualizace';">Objevte Data</Button>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button href="/vizualizace" size="lg">Pojďme na to!</Button>
+                <Button onClick="location.href='/vizualizace';" size="lg">Pojďme na to!</Button>
               </div>
             </div>
           </div>
