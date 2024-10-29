@@ -37,13 +37,11 @@ export function BarPotrebnaCastka() {
     const fetchData = async () => {
       try {
         // Fetch property price data
-        const priceResponse = await fetch(`http://localhost:3001/api/byt/2023`);
+        const priceResponse = await fetch(`/api/byt/2023`);
         const priceResult = await priceResponse.json();
 
         // Fetch median salary data
-        const salaryResponse = await fetch(
-          `http://localhost:3001/api/mzda/2023`
-        );
+        const salaryResponse = await fetch(`/api/mzda/2023`);
         const salaryResult = await salaryResponse.json();
 
         const basePrices = priceResult.data.map((item) => ({

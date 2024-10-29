@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -9,33 +8,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BarChart, LineChart, MapPin, TrendingUp, Users } from "lucide-react";
-import { ModeToggle } from "@/components/themebtn";
+import { NavBar } from "@/components/nav";
 
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
-        <Link className="flex items-center" href="#">
-          <Image
-            src="/nemo.png" // Změňte cestu k obrázku podle potřeby
-            alt="Logo NEMO"
-            width={24} // Nastavte šířku na 24px
-            height={24} // Nastavte výšku na 24px
-            className="h-6 w-6" // Třída pro kontrolu velikosti
-          />
-          <span className="ml-2 text-lg font-bold">NEMO</span>
-        </Link>
-        <nav className="flex gap-4 sm:gap-6 flex-1 justify-end items-center">
-          {/* Odkaz na vizualizace zůstává vpravo */}
-          <Link
-            className="text-sm font-medium hover:underline underline-offset-4"
-            href="/vizualizace"
-          >
-            Vizualizace
-          </Link>
-          <ModeToggle />
-        </nav>
-      </header>
+      <NavBar></NavBar>
 
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">

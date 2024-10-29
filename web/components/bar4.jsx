@@ -20,8 +20,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { ToolTip } from "./toolTip";
 
-// Chart configuration (for colors and layout)
 const chartConfig = {
   desktop: {
     label: "Desktop",
@@ -30,25 +30,22 @@ const chartConfig = {
 };
 
 export function BarPrumernaCena() {
-  const [customSize, setCustomSize] = useState(65.3); // Default size in m²
+  const [customSize, setCustomSize] = useState(65.3);
   const [adjustedData, setAdjustedData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://susice-hackathon2024.vercel.app//api/byt/2023`
-        ); // Adjust the year as needed
+        const response = await fetch(`/api/byt/2023`);
         const result = await response.json();
         const basePrices = result.data.map((item) => ({
           kraj: item.Kraj,
-          avgPrice: item.AVG, // Average price per m²
+          avgPrice: item.AVG,
         }));
 
-        // Adjust prices based on the apartment size
         const updatedData = basePrices.map((data) => ({
           ...data,
-          avgPrice: Math.round(data.avgPrice * 65.3), // Price for a 65.3 m² apartment
+          avgPrice: Math.round(data.avgPrice * 65.3),
         }));
 
         setAdjustedData(updatedData);
@@ -60,11 +57,10 @@ export function BarPrumernaCena() {
     fetchData();
   }, []);
 
-  // Funkce pro nastavení vlastní velikosti bytu
   const handleSizeChange = (event) => {
-    const newSize = event.target.value; // Získání nové hodnoty jako string
+    const newSize = event.target.value;
     if (newSize === "") {
-      setCustomSize(""); // Umožňuje vymazání na prázdný string
+      setCustomSize("");
     } else {
       const parsedSize = parseFloat(newSize);
       if (!isNaN(parsedSize)) {
@@ -73,27 +69,25 @@ export function BarPrumernaCena() {
     }
   };
 
-  // Vlastní tooltip pro zobrazení názvu kraje a průměrné ceny
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white border rounded shadow-lg p-2">
-          <p className="font-semibold">{payload[0].payload.kraj}</p>
-          <p className="text-muted-foreground">{`${payload[0].value.toLocaleString()} Kč`}</p>
-        </div>
+        <ToolTip
+          title={payload[0].payload.kraj}
+          p={`${payload[0].value.toLocaleString()} Kč`}
+        ></ToolTip>
       );
     }
     return null;
   };
 
-  // Výpočet nejnižší a nejvyšší ceny
   const prices = adjustedData.map((data) => data.avgPrice);
   const maxPrice = Math.max(...prices);
   const minPrice = Math.min(...prices);
   const percentDifference = ((maxPrice - minPrice) / minPrice) * 100;
 
   return (
-    <Card className="mx-auto w-3/4 my-8">
+    <Card className="mx-auto w-full h-3/4 md:w-3/4 my-8">
       <CardHeader>
         <CardTitle>
           Průměrná cena za byt v jednotlivých krajích (2023)
@@ -104,7 +98,6 @@ export function BarPrumernaCena() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {/* Input pro zadání vlastní velikosti bytu */}
         <div className="mb-4">
           <label className="block text-sm mb-1">
             Zadejte velikost bytu (m²):
@@ -122,31 +115,29 @@ export function BarPrumernaCena() {
             accessibilityLayer
             data={adjustedData.map((data) => ({
               ...data,
-              avgPrice: Math.round((data.avgPrice / 65.3) * customSize), // Adjust price based on input size
+              avgPrice: Math.round((data.avgPrice / 65.3) * customSize),
             }))}
             margin={{
               top: 20,
             }}
           >
             <CartesianGrid vertical={false} />
-            {/* Osa X zobrazující názvy krajů */}
             <XAxis
               dataKey="kraj"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 5)}
+              tickFormatter={(value) => value.slice(0, 3)}
             />
-            {/* Osa Y zobrazující ceny */}
+
             <Tooltip content={<CustomTooltip />} />
-            {/* Bar graph zobrazující průměrnou cenu */}
+
             <Bar dataKey="avgPrice" fill="var(--color-desktop)" radius={8}>
               <LabelList
                 position="top"
                 offset={12}
-                className="fill-foreground"
+                className="fill-foreground text-sm hidden md:block"
                 fontSize={12}
-                //formatter={(value) => `${value.toLocaleString()} Kč`} // Zobrazení hodnot s čárkou
               />
             </Bar>
           </BarChart>

@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TrendingUp } from "lucide-react";
+import { ToolTip } from "./toolTip";
 
 const chartConfig = {
   saving: {
@@ -36,60 +37,48 @@ const chartConfig = {
 
 export function BarPotrebaHypo() {
   const [chartData, setChartData] = useState([]);
-  const [percentage, setPercentage] = useState(10); // Default percentage is 10%
-  const [priceDifference, setPriceDifference] = useState(0); // For % difference between highest and lowest
-  const [maxPrice, setMaxPrice] = useState(0); // Store the max price
-  const [minPrice, setMinPrice] = useState(0); // Store the min price
-
+  const [percentage, setPercentage] = useState(10);
+  const [priceDifference, setPriceDifference] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch median salary data
-        const salaryResponse = await fetch(
-          "https://susice-hackathon2024.vercel.app//api/mzda/2023"
-        );
+        const salaryResponse = await fetch("/api/mzda/2023");
         const salaryData = await salaryResponse.json();
 
-        // Fetch median property price data
-        const propertyResponse = await fetch(
-          "https://susice-hackathon2024.vercel.app//api/byt/2023"
-        );
+        const propertyResponse = await fetch("/api/byt/2023");
         const propertyData = await propertyResponse.json();
 
-        const avgApartmentSize = 65.3; // Average apartment size in m²
+        const avgApartmentSize = 65.3;
 
-        // Combine data
         const combinedData = salaryData.data.map((salaryItem) => {
-          // Find the corresponding property item based on the region
           const propertyItem = propertyData.data.find(
-            (item) => item.Kraj === salaryItem.kraj // Ensure this matches your salary data structure
+            (item) => item.Kraj === salaryItem.kraj
           );
 
-          const medPricePerM2 = propertyItem ? propertyItem.AVG : 0; // Use AVG for average price
-          const totalPrice = medPricePerM2 * avgApartmentSize; // Total price for the apartment
+          const medPricePerM2 = propertyItem ? propertyItem.AVG : 0;
+          const totalPrice = medPricePerM2 * avgApartmentSize;
 
-          // Calculate amount to save based on percentage
           const amountToSave = totalPrice * (percentage / 100);
-          const medianSalary = salaryItem.medianMzdovaMzda || 1; // Avoid division by 0
+          const medianSalary = salaryItem.medianMzdovaMzda || 1;
 
           return {
             kraj: salaryItem.kraj,
-            amountToSaveKc: Math.round(amountToSave), // Save amount in Kč, rounded
-            amountToSaveMonths: Math.round(amountToSave / medianSalary), // Save amount in months, rounded
-            totalPrice, // Store total price for calculations
+            amountToSaveKc: Math.round(amountToSave),
+            amountToSaveMonths: Math.round(amountToSave / medianSalary),
+            totalPrice,
           };
         });
 
-        // Calculate max and min price
         const prices = combinedData.map((item) => item.totalPrice);
         const max = Math.max(...prices);
         const min = Math.min(...prices);
         const diffPercentage = ((max - min) / min) * 100;
 
-        // Set the data to state
-        setMaxPrice(Math.round(max)); // Round max price
-        setMinPrice(Math.round(min)); // Round min price
-        setPriceDifference(Math.round(diffPercentage)); // Round percentage difference
+        setMaxPrice(Math.round(max));
+        setMinPrice(Math.round(min));
+        setPriceDifference(Math.round(diffPercentage));
         setChartData(
           combinedData.filter(
             (item) => item.kraj !== "kraj" && item.kraj !== "Česká republika"
@@ -103,36 +92,38 @@ export function BarPotrebaHypo() {
     fetchData();
   }, [percentage]);
 
-  // Custom Tooltip for displaying savings in Kč with space between thousands
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white border rounded shadow-lg p-2">
-          <p className="font-semibold">{payload[0].payload.kraj}</p>
-          <p className="text-muted-foreground">{`Úspory: ${payload[0].value.toLocaleString(
-            "cs-CZ"
-          )} Kč`}</p>
-        </div>
+        <ToolTip
+          title={payload[0].payload.kraj}
+          p={`Úspory: ${payload[0].value.toLocaleString("cs-CZ")} Kč`}
+        ></ToolTip>
       );
     }
     return null;
   };
 
   return (
-    <Card className="mx-auto w-3/4 my-8">
+    <Card className="mx-auto w-full h-3/4 md:w-3/4 my-8">
       <CardHeader>
         <CardTitle>Potřebná částka pro získání hypotéky</CardTitle>
         <CardDescription>Přepněte mezi 10 % a 20 % úspor</CardDescription>
+
         <Select
           onValueChange={(value) => setPercentage(Number(value))}
           defaultValue="10"
         >
           <SelectTrigger className="w-32">
-            <SelectValue placeholder="Vyberte procento" />
+            <SelectValue placeholder="Vyberte procenta" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={10}>10%</SelectItem>
-            <SelectItem value={20}>20%</SelectItem>
+            <SelectItem value={10} key={10}>
+              10%
+            </SelectItem>
+            <SelectItem value={20} key={20}>
+              20%
+            </SelectItem>
           </SelectContent>
         </Select>
       </CardHeader>
@@ -154,7 +145,7 @@ export function BarPotrebaHypo() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => String(value).slice(0, 4)} // Convert value to string
+              tickFormatter={(value) => String(value).slice(0, 3)}
             />
             <Tooltip content={<CustomTooltip />} />
             <Bar
@@ -165,7 +156,7 @@ export function BarPotrebaHypo() {
               <LabelList
                 position="top"
                 offset={12}
-                className="fill-foreground"
+                className="fill-foreground text-sm hidden md:block"
                 fontSize={12}
               />
             </Bar>
